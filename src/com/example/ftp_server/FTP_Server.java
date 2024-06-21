@@ -166,7 +166,7 @@ public class FTP_Server extends JFrame {
         executorService.submit(() -> {
             serverBackend.shutdownThreadPool();
             FileHandler.deleteTempDirectory(tempDirectory);
-            appendToConsole("\n\nServer shutting down...");
+            appendToConsole("\nServer shutting down...");
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {

@@ -1,4 +1,3 @@
-// FileHandler.java
 package com.example.ftp_server;
 
 import javax.swing.*;
@@ -14,11 +13,7 @@ public class FileHandler {
         if (selectedFile != null) {
             File file = new File(tempDirectory, selectedFile);
             if (file.exists()) {
-                String fileType = FileType.getFileExtension(file);
-
-                // Open all file types externally
                 openFileExternally(file, serverGUI);
-                
             } else {
                 serverGUI.appendToConsole("Selected file does not exist: " + selectedFile);
             }
@@ -49,7 +44,7 @@ public class FileHandler {
                         }
                         out.flush();
                         serverGUI.appendToConsole("File downloaded successfully: " + selectedFile);
-                        serverGUI.addFileToList(downloadFile.getName());
+                        // Do not add the file to the list
                     } catch (IOException e) {
                         serverGUI.appendToConsole("Error downloading file: " + e.getMessage());
                         e.printStackTrace();
@@ -131,9 +126,9 @@ public class FileHandler {
     private static void openFileExternally(File file, FTP_Server serverGUI) {
         try {
             Desktop.getDesktop().open(file);
-            serverGUI.appendToConsole("Opening file: " + file.getName());
+            serverGUI.appendToConsole("Opening file: " + file.getName() + "\n");
         } catch (IOException e) {
-            serverGUI.appendToConsole("\nError opening file externally: " + e.getMessage());
+            serverGUI.appendToConsole("\nError opening file externally: " + e.getMessage() + "\n");
         }
     }
 }
